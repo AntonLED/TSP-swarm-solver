@@ -1,0 +1,174 @@
+./data/tsp_51_1 Running test on file:
+Loaded 51 cities from ./data/tsp_51_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 455.82, Tau0: 4.301664e-5
+Starting Robust ACS (beta=2, ants=32)...
+Iter 0: NEW RECORD 436.89
+Iter 1: NEW RECORD 433.79
+Iter 5: NEW RECORD 433.79
+Iter 16: NEW RECORD 430.86
+Iter 18: NEW RECORD 430.86
+Iter 20: NEW RECORD 429.48
+Iter 26: NEW RECORD 429.48
+Iter 105: NEW RECORD 428.98
+Iter 117: NEW RECORD 428.98
+Done in 100.10mss. Best: 428.98
+Final Best Tour Length: 428.98 / 482.00 430.00
+7 points test passed!
+----------------------------------------
+./data/tsp_100_3 Running test on file:
+Loaded 100 cities from ./data/tsp_100_3
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 23001.00, Tau0: 4.347636e-7
+Starting Robust ACS (beta=2, ants=32)...
+Iter 0: NEW RECORD 21635.52
+Iter 1: NEW RECORD 21003.63
+Iter 2: NEW RECORD 21003.44
+Iter 3: NEW RECORD 20956.68
+Iter 4: NEW RECORD 20805.94
+Iter 5: NEW RECORD 20805.94
+Iter 8: NEW RECORD 20798.44
+Iter 9: NEW RECORD 20798.44
+Iter 16: NEW RECORD 20798.44
+Iter 18: NEW RECORD 20750.76
+Iter 19: NEW RECORD 20750.76
+Iter 20: NEW RECORD 20750.76
+Iter 25: NEW RECORD 20750.76
+Done in 463.97mss. Best: 20750.76
+Final Best Tour Length: 20750.76 / 23433.00 20800.00
+7 points test passed!
+----------------------------------------
+./data/tsp_200_2 Running test on file:
+Loaded 200 cities from ./data/tsp_200_2
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 33403.61, Tau0: 1.496844e-7
+Starting Robust ACS (beta=2, ants=32)...
+Iter 0: NEW RECORD 33279.10
+Iter 1: NEW RECORD 31984.12
+Iter 2: NEW RECORD 31424.42
+Iter 3: NEW RECORD 31089.24
+Iter 4: NEW RECORD 30971.09
+Iter 8: NEW RECORD 30882.40
+Iter 10: NEW RECORD 30687.26
+Iter 12: NEW RECORD 30499.94
+Iter 13: NEW RECORD 30405.68
+Iter 14: NEW RECORD 30319.66
+Iter 15: NEW RECORD 30287.70
+Iter 17: NEW RECORD 30287.70
+Iter 19: NEW RECORD 30253.24
+Iter 25: NEW RECORD 30224.71
+Iter 27: NEW RECORD 30193.63
+Iter 31: NEW RECORD 30193.63
+Iter 35: NEW RECORD 30188.44
+Iter 40: NEW RECORD 30188.44
+Iter 43: NEW RECORD 30161.57
+Iter 46: NEW RECORD 30134.48
+Iter 49: NEW RECORD 30134.48
+Iter 55: NEW RECORD 30134.48
+Iter 58: NEW RECORD 30110.12
+Iter 61: NEW RECORD 30110.12
+Iter 64: NEW RECORD 30110.12
+Iter 67: NEW RECORD 30103.85
+Iter 69: NEW RECORD 30103.85
+Iter 72: NEW RECORD 30079.41
+Iter 76: NEW RECORD 30078.92
+Iter 77: NEW RECORD 30078.92
+Iter 78: NEW RECORD 30078.34
+Iter 90: NEW RECORD 30078.34
+Iter 101: NEW RECORD 30051.46
+Iter 104: NEW RECORD 30051.46
+Iter 108: NEW RECORD 30047.03
+Iter 109: NEW RECORD 30026.85
+Iter 110: NEW RECORD 30026.85
+Iter 119: NEW RECORD 30026.85
+Iter 130: NEW RECORD 30026.85
+Iter 146: NEW RECORD 30021.60
+Iter 148: NEW RECORD 30021.60
+Iter 176: NEW RECORD 30011.16
+Iter 187: NEW RECORD 30011.16
+Iter 234: NEW RECORD 29988.10
+Iter 240: NEW RECORD 29988.10
+Done in 1.85ss. Best: 29988.10
+Final Best Tour Length: 29988.10 / 35985.00 30000.00
+7 points test passed!
+----------------------------------------
+./data/tsp_574_1 Running test on file:
+Loaded 574 cities from ./data/tsp_574_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 41576.47, Tau0: 4.190255e-8
+Starting Robust ACS (beta=3, ants=128)...
+Iter 0: NEW RECORD 40502.05
+Iter 1: NEW RECORD 39609.89
+Iter 3: NEW RECORD 39585.70
+Iter 10: NEW RECORD 39238.79
+Iter 11: NEW RECORD 39083.70
+Iter 27: NEW RECORD 38950.36
+Iter 28: NEW RECORD 38885.83
+Iter 29: NEW RECORD 38885.83
+Iter 42: NEW RECORD 38885.83
+Iter 46: NEW RECORD 38753.75
+Iter 51: NEW RECORD 38690.22
+Iter 59: NEW RECORD 38578.34
+Iter 63: NEW RECORD 38463.26
+Iter 65: NEW RECORD 38463.26
+Iter 73: NEW RECORD 38285.07
+Iter 78: NEW RECORD 38269.29
+Iter 91: NEW RECORD 38269.29
+Iter 93: NEW RECORD 38252.93
+Iter 96: NEW RECORD 38252.93
+Iter 103: NEW RECORD 38252.82
+Iter 104: NEW RECORD 38231.59
+Iter 123: NEW RECORD 38231.59
+Iter 124: NEW RECORD 38186.29
+Iter 138: NEW RECORD 38169.46
+Iter 146: NEW RECORD 38169.46
+Iter 160: NEW RECORD 38169.46
+Iter 161: NEW RECORD 38169.46
+Iter 162: NEW RECORD 38063.45
+Iter 170: NEW RECORD 38038.93
+Iter 173: NEW RECORD 38038.93
+Iter 175: NEW RECORD 37940.16
+Iter 179: NEW RECORD 37895.20
+Iter 238: NEW RECORD 37844.39
+Iter 251: NEW RECORD 37785.13
+Iter 405: NEW RECORD 37762.39
+Iter 490: NEW RECORD 37760.44
+Iter 523: NEW RECORD 37754.03
+Iter 536: NEW RECORD 37724.63
+Iter 560: NEW RECORD 37724.63
+Iter 657: NEW RECORD 37723.87
+Iter 668: NEW RECORD 37718.32
+Iter 688: NEW RECORD 37629.90
+Iter 698: NEW RECORD 37614.14
+Iter 752: NEW RECORD 37614.14
+Iter 885: NEW RECORD 37579.72
+Iter 920: NEW RECORD 37579.72
+Iter 1800: NEW RECORD 37579.16
+Done in 355.22ss. Best: 37579.16
+Final Best Tour Length: 37579.16 / 40000.00 37600.00
+7 points test passed!
+----------------------------------------
+./data/tsp_1889_1 Running test on file:
+Loaded 1889 cities from ./data/tsp_1889_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 360947.37, Tau0: 1.466642e-9
+Starting Robust ACS (beta=2, ants=256)...
+Done in 12.74ss. Best: 360947.37
+Final Best Tour Length: 360947.37 / 378069.00 323000.00
+5 points test passed!
+----------------------------------------
+./data/tsp_33810_1 Running test on file:
+Loaded 33810 cities from ./data/tsp_33810_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 75799301.65, Tau0: 3.902021e-13
+Starting Robust ACS (beta=2, ants=32)...
+Done in 42.00nss. Best: 75799301.65
+Final Best Tour Length: 75799301.65 / 78478868.00 67700000.00
+5 points test passed!
+----------------------------------------
+Test 0: 7 points!
+Test 1: 7 points!
+Test 2: 7 points!
+Test 3: 7 points!
+Test 4: 5 points!
+Test 5: 5 points!

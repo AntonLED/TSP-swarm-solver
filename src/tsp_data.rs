@@ -5,7 +5,6 @@ use std::path::Path;
 #[derive(Clone)]
 pub struct TspData {
     pub coords: Vec<(f64, f64)>,
-    pub dist_matrix: Vec<f64>,
     pub n: usize,
 }
 
@@ -41,28 +40,16 @@ impl TspData {
             n = coords.len();
         }
 
-        // Вычисляем матрицу расстояний
-        let mut dist_matrix = vec![0.0; n * n];
-        for i in 0..n {
-            for j in (i + 1)..n {
-                let dx = coords[i].0 - coords[j].0;
-                let dy = coords[i].1 - coords[j].1;
-                let dist = (dx * dx + dy * dy).sqrt();
-                dist_matrix[i * n + j] = dist;
-                dist_matrix[j * n + i] = dist;
-            }
-        }
-
-        Ok(TspData {
-            coords,
-            dist_matrix,
-            n,
-        })
+        Ok(TspData { coords, n })
     }
 
     #[inline(always)]
     pub fn dist(&self, i: usize, j: usize) -> f64 {
-        unsafe { *self.dist_matrix.get_unchecked(i * self.n + j) }
+        let (x1, y1) = self.coords[i];
+        let (x2, y2) = self.coords[j];
+        let dx = x1 - x2;
+        let dy = y1 - y2;
+        (dx * dx + dy * dy).sqrt()
     }
 
     pub fn calculate_tour_length(&self, tour: &[usize]) -> f64 {
