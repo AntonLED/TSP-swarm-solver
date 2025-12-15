@@ -4,7 +4,7 @@ mod tsp_solvers;
 use ::colored::Colorize;
 use std::{fs, path::Path};
 use tsp_data::TspData;
-use tsp_solvers::AcsTspSolver;
+use tsp_solvers::{AcsTspSolver, PsoTspSolver};
 
 struct SolverConfig {
     n_ants: usize,
@@ -24,6 +24,51 @@ enum TestResult {
     Passed5,
     Passed7,
     Failed,
+}
+
+fn run_simple_test(config: &TestsConfig) -> Result<(TestResult, Vec<usize>), ()> {
+    let filename = config.filename;
+
+    if !Path::new(filename).exists() {
+        eprintln!("Error: File '{}' not found.", filename);
+        eprintln!(
+            "Please make sure you have a 'data' folder next to Cargo.toml containing the test file."
+        );
+        return Err(());
+    }
+
+    match TspData::new(filename) {
+        Ok(data) => {
+            println!("Loaded {} cities.", data.n);
+
+            let num_particles = 128;
+            let iterations = 512;
+            let w = 0.7;
+            let c1 = 1.5;
+            let c2 = 1.5;
+
+            let mut solver = PsoTspSolver::new(data, num_particles, iterations, w, c1, c2);
+
+            solver.run();
+
+            println!("Final PSO Best Length: {:.2}", solver.gbest_score);
+
+            if solver.gbest_score <= config.score_min && solver.gbest_score >= config.score_max {
+                println!("{}", "5 points test passed!".yellow());
+                Ok((TestResult::Passed5, solver.gbest_tour))
+            } else if solver.gbest_score >= config.score_min {
+                println!("{}", "0 points test failed!".red());
+                Ok((TestResult::Failed, solver.gbest_tour))
+            } else {
+                println!("{}", "7 points test passed!".green());
+                Ok((TestResult::Passed7, solver.gbest_tour))
+            }
+        }
+        Err(e) => {
+            eprintln!("Error loading data: {}", e);
+            Err(())
+        }
+    }
 }
 
 fn run_test(config: &TestsConfig) -> Result<(TestResult, Vec<usize>), ()> {
@@ -143,10 +188,28 @@ fn main() {
             },
         },
     ];
+    let mut simple_results = Vec::new();
+    let mut simple_answer = String::new();
+
     let mut results = Vec::new();
     let mut answer = String::new();
 
-    let answer_filename = "answer.txt";
+    let simple_answer_filename = "./answers/classic_pso_answer.txt";
+    let answer_filename = "./answers/improved_acs_answer.txt";
+
+    // Running simple tests
+    for config in tests.iter() {
+        println!(
+            "{1} {}",
+            "Running simple test on file:".white().bold(),
+            config.filename
+        );
+        match run_simple_test(config) {
+            Ok(result) => simple_results.push(result),
+            Err(_) => println!("{}", "Test could not be completed due to an error.".red()),
+        }
+        println!("----------------------------------------");
+    }
 
     // Running tests
     for config in tests.iter() {
@@ -163,21 +226,37 @@ fn main() {
     }
 
     for i in 0..tests.len() {
+        match &simple_results[i] {
+            (TestResult::Passed5, tour) => {
+                println!("Test {i} PSO: {}", "5 points!".yellow());
+                simple_answer.push_str(&format!("{} {} {}\n", i, 5, format!("{:?}", tour)));
+            }
+            (TestResult::Passed7, tour) => {
+                println!("Test {i} PSO: {}", "7 points!".green());
+                simple_answer.push_str(&format!("{} {} {}\n", i, 7, format!("{:?}", tour)));
+            }
+            (TestResult::Failed, tour) => {
+                println!("Test {i} PSO: {}", "0 points!".red());
+                simple_answer.push_str(&format!("{} {} {}\n", i, 0, format!("{:?}", tour)));
+            }
+        }
+
         match &results[i] {
             (TestResult::Passed5, tour) => {
-                println!("Test {i}: {}", "5 points!".yellow());
+                println!("Test {i} ACS: {}", "5 points!".yellow());
                 answer.push_str(&format!("{} {} {}\n", i, 5, format!("{:?}", tour)));
             }
             (TestResult::Passed7, tour) => {
-                println!("Test {i}: {}", "7 points!".green());
+                println!("Test {i} ACS: {}", "7 points!".green());
                 answer.push_str(&format!("{} {} {}\n", i, 7, format!("{:?}", tour)));
             }
             (TestResult::Failed, tour) => {
-                println!("Test {i}: {}", "0 points!".red());
+                println!("Test {i} ACS: {}", "0 points!".red());
                 answer.push_str(&format!("{} {} {}\n", i, 0, format!("{:?}", tour)));
             }
         }
     }
 
     let _ = fs::write(answer_filename, answer);
+    let _ = fs::write(simple_answer_filename, simple_answer);
 }

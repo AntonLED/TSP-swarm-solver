@@ -1,0 +1,256 @@
+./data/tsp_51_1 Running simple test on file:
+Loaded 51 cities.
+Starting Classic PSO...
+Iter 0: Best = 1437.03
+Iter 100: Best = 1206.41
+Iter 200: Best = 1206.41
+Iter 300: Best = 1206.41
+Iter 400: Best = 1206.41
+Iter 500: Best = 1206.41
+Finished in 46.00mss. Best: 1206.41
+Final PSO Best Length: 1206.41
+0 points test failed!
+----------------------------------------
+./data/tsp_100_3 Running simple test on file:
+Loaded 100 cities.
+Starting Classic PSO...
+Iter 0: Best = 149931.77
+Iter 100: Best = 121915.57
+Iter 200: Best = 121364.42
+Iter 300: Best = 121364.42
+Iter 400: Best = 121364.42
+Iter 500: Best = 121364.42
+Finished in 60.44mss. Best: 121364.42
+Final PSO Best Length: 121364.42
+0 points test failed!
+----------------------------------------
+./data/tsp_200_2 Running simple test on file:
+Loaded 200 cities.
+Starting Classic PSO...
+Iter 0: Best = 297392.70
+Iter 100: Best = 266000.87
+Iter 200: Best = 266000.87
+Iter 300: Best = 264753.80
+Iter 400: Best = 264753.80
+Iter 500: Best = 264753.80
+Finished in 129.00mss. Best: 264753.80
+Final PSO Best Length: 264753.80
+0 points test failed!
+----------------------------------------
+./data/tsp_574_1 Running simple test on file:
+Loaded 574 cities.
+Starting Classic PSO...
+Iter 0: Best = 647473.88
+Iter 100: Best = 602827.13
+Iter 200: Best = 598434.20
+Iter 300: Best = 597948.92
+Iter 400: Best = 597791.53
+Iter 500: Best = 597791.53
+Finished in 409.92mss. Best: 597791.53
+Final PSO Best Length: 597791.53
+0 points test failed!
+----------------------------------------
+./data/tsp_1889_1 Running simple test on file:
+Loaded 1889 cities.
+Starting Classic PSO...
+Iter 0: Best = 14485846.78
+Iter 100: Best = 13920628.98
+Iter 200: Best = 13793174.28
+Iter 300: Best = 13786495.21
+Iter 400: Best = 13786495.21
+Iter 500: Best = 13786495.21
+Finished in 1.63ss. Best: 13786495.21
+Final PSO Best Length: 13786495.21
+0 points test failed!
+----------------------------------------
+./data/tsp_33810_1 Running simple test on file:
+Loaded 33810 cities.
+Starting Classic PSO...
+Iter 0: Best = 9366076203.95
+Iter 100: Best = 9321241242.86
+Iter 200: Best = 9315917705.25
+Iter 300: Best = 9300910258.37
+Iter 400: Best = 9290996946.79
+Iter 500: Best = 9289559797.76
+Finished in 42.09ss. Best: 9289559797.76
+Final PSO Best Length: 9289559797.76
+0 points test failed!
+----------------------------------------
+./data/tsp_51_1 Running test on file:
+Loaded 51 cities from ./data/tsp_51_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 455.82, Tau0: 4.301664e-5
+Starting Robust ACS (beta=2, ants=32)...
+Iter 0: NEW RECORD 443.80
+Iter 1: NEW RECORD 437.97
+Iter 2: NEW RECORD 434.77
+Iter 3: NEW RECORD 432.99
+Iter 4: NEW RECORD 431.61
+Iter 6: NEW RECORD 430.35
+Iter 17: NEW RECORD 429.48
+Iter 39: NEW RECORD 428.98
+Iter 43: NEW RECORD 428.98
+Iter 55: NEW RECORD 428.98
+Done in 83.03mss. Best: 428.98
+Final Best Tour Length: 428.98 / 482.00 430.00
+7 points test passed!
+----------------------------------------
+./data/tsp_100_3 Running test on file:
+Loaded 100 cities from ./data/tsp_100_3
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 23001.00, Tau0: 4.347636e-7
+Starting Robust ACS (beta=2, ants=32)...
+Iter 0: NEW RECORD 21864.46
+Iter 1: NEW RECORD 21279.24
+Iter 2: NEW RECORD 21088.45
+Iter 4: NEW RECORD 21041.59
+Iter 5: NEW RECORD 21037.87
+Iter 8: NEW RECORD 21037.87
+Iter 9: NEW RECORD 20977.68
+Iter 11: NEW RECORD 20930.00
+Iter 12: NEW RECORD 20930.00
+Iter 18: NEW RECORD 20930.00
+Iter 20: NEW RECORD 20826.64
+Iter 22: NEW RECORD 20797.19
+Iter 27: NEW RECORD 20797.19
+Iter 35: NEW RECORD 20775.66
+Iter 41: NEW RECORD 20775.66
+Iter 53: NEW RECORD 20771.26
+Iter 54: NEW RECORD 20771.26
+Iter 58: NEW RECORD 20771.26
+Iter 65: NEW RECORD 20752.16
+Iter 66: NEW RECORD 20752.16
+Iter 69: NEW RECORD 20752.16
+Iter 127: NEW RECORD 20750.76
+Iter 135: NEW RECORD 20750.76
+Done in 497.17mss. Best: 20750.76
+Final Best Tour Length: 20750.76 / 23433.00 20800.00
+7 points test passed!
+----------------------------------------
+./data/tsp_200_2 Running test on file:
+Loaded 200 cities from ./data/tsp_200_2
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 33403.61, Tau0: 1.496844e-7
+Starting Robust ACS (beta=2, ants=32)...
+Iter 0: NEW RECORD 31121.66
+Iter 1: NEW RECORD 31002.44
+Iter 2: NEW RECORD 30736.64
+Iter 5: NEW RECORD 30719.72
+Iter 9: NEW RECORD 30592.80
+Iter 15: NEW RECORD 30564.26
+Iter 17: NEW RECORD 30478.55
+Iter 18: NEW RECORD 30478.55
+Iter 24: NEW RECORD 30462.63
+Iter 26: NEW RECORD 30462.63
+Iter 28: NEW RECORD 30362.13
+Iter 29: NEW RECORD 30286.39
+Iter 33: NEW RECORD 30286.39
+Iter 39: NEW RECORD 30268.31
+Iter 40: NEW RECORD 30268.31
+Iter 42: NEW RECORD 30158.18
+Iter 44: NEW RECORD 30158.18
+Iter 48: NEW RECORD 30096.45
+Iter 49: NEW RECORD 30081.71
+Iter 51: NEW RECORD 30081.71
+Iter 58: NEW RECORD 30058.21
+Iter 59: NEW RECORD 30058.21
+Iter 66: NEW RECORD 30058.21
+Iter 69: NEW RECORD 29981.53
+Iter 73: NEW RECORD 29963.08
+Iter 74: NEW RECORD 29957.21
+Iter 75: NEW RECORD 29957.21
+Iter 81: NEW RECORD 29944.80
+Iter 85: NEW RECORD 29892.87
+Iter 87: NEW RECORD 29892.87
+Iter 90: NEW RECORD 29891.09
+Iter 92: NEW RECORD 29891.09
+Iter 114: NEW RECORD 29885.83
+Iter 133: NEW RECORD 29861.39
+Iter 134: NEW RECORD 29861.39
+Iter 136: NEW RECORD 29861.39
+Iter 140: NEW RECORD 29819.16
+Iter 147: NEW RECORD 29819.16
+Iter 153: NEW RECORD 29785.38
+Iter 154: NEW RECORD 29785.38
+Iter 161: NEW RECORD 29785.38
+Iter 162: NEW RECORD 29785.38
+Done in 1.93ss. Best: 29785.38
+Final Best Tour Length: 29785.38 / 35985.00 30000.00
+7 points test passed!
+----------------------------------------
+./data/tsp_574_1 Running test on file:
+Loaded 574 cities from ./data/tsp_574_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 41576.47, Tau0: 4.190255e-8
+Starting Robust ACS (beta=3, ants=128)...
+Iter 0: NEW RECORD 40507.17
+Iter 1: NEW RECORD 40093.31
+Iter 2: NEW RECORD 39593.82
+Iter 4: NEW RECORD 39421.96
+Iter 5: NEW RECORD 39362.54
+Iter 17: NEW RECORD 39273.92
+Iter 27: NEW RECORD 38845.05
+Iter 39: NEW RECORD 38732.37
+Iter 45: NEW RECORD 38680.22
+Iter 47: NEW RECORD 38570.51
+Iter 48: NEW RECORD 38298.82
+Iter 53: NEW RECORD 38168.14
+Iter 64: NEW RECORD 38100.27
+Iter 85: NEW RECORD 38084.51
+Iter 95: NEW RECORD 38050.13
+Iter 172: NEW RECORD 37947.89
+Iter 206: NEW RECORD 37897.93
+Iter 213: NEW RECORD 37885.80
+Iter 216: NEW RECORD 37876.94
+Iter 246: NEW RECORD 37757.00
+Iter 536: NEW RECORD 37757.00
+Iter 725: NEW RECORD 37717.18
+Iter 747: NEW RECORD 37707.04
+Iter 752: NEW RECORD 37694.44
+Iter 757: NEW RECORD 37633.62
+Iter 764: NEW RECORD 37633.62
+Iter 765: NEW RECORD 37611.65
+Iter 776: NEW RECORD 37595.89
+Iter 780: NEW RECORD 37595.89
+Iter 790: NEW RECORD 37575.68
+Iter 863: NEW RECORD 37569.34
+Iter 902: NEW RECORD 37562.67
+Iter 919: NEW RECORD 37480.43
+Iter 944: NEW RECORD 37480.43
+Iter 995: NEW RECORD 37474.84
+Iter 998: NEW RECORD 37410.26
+Iter 1186: NEW RECORD 37398.65
+Done in 357.07ss. Best: 37398.65
+Final Best Tour Length: 37398.65 / 40000.00 37600.00
+7 points test passed!
+----------------------------------------
+./data/tsp_1889_1 Running test on file:
+Loaded 1889 cities from ./data/tsp_1889_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 360947.37, Tau0: 1.466642e-9
+Starting Robust ACS (beta=2, ants=256)...
+Done in 12.26ss. Best: 360947.37
+Final Best Tour Length: 360947.37 / 378069.00 323000.00
+5 points test passed!
+----------------------------------------
+./data/tsp_33810_1 Running test on file:
+Loaded 33810 cities from ./data/tsp_33810_1
+Precomputing Candidate Lists (Top 30)...
+Optimized Baseline: 75799301.65, Tau0: 3.902021e-13
+Starting Robust ACS (beta=2, ants=32)...
+Done in 125.00nss. Best: 75799301.65
+Final Best Tour Length: 75799301.65 / 78478868.00 67700000.00
+5 points test passed!
+----------------------------------------
+Test 0 PSO: 0 points!
+Test 0 ACS: 7 points!
+Test 1 PSO: 0 points!
+Test 1 ACS: 7 points!
+Test 2 PSO: 0 points!
+Test 2 ACS: 7 points!
+Test 3 PSO: 0 points!
+Test 3 ACS: 7 points!
+Test 4 PSO: 0 points!
+Test 4 ACS: 5 points!
+Test 5 PSO: 0 points!
+Test 5 ACS: 5 points!

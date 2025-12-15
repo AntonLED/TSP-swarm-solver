@@ -1,4 +1,5 @@
 use crate::tsp_data::TspData;
+use rand::distr::{Distribution, Uniform};
 use rand::prelude::*;
 use std::time::Instant;
 
@@ -20,6 +21,28 @@ pub struct AcsTspSolver {
 
     pub best_tour: Vec<usize>,
     pub best_score: f64,
+    pub history: Vec<f64>,
+}
+
+pub struct PsoTspSolver {
+    data: TspData,
+    num_particles: usize,
+    iterations: usize,
+
+    w: f64,
+    c1: f64,
+    c2: f64,
+
+    positions: Vec<Vec<f64>>,
+    velocities: Vec<Vec<f64>>,
+
+    pbest_pos: Vec<Vec<f64>>,
+    pbest_scores: Vec<f64>,
+
+    pub gbest_pos: Vec<f64>,
+    pub gbest_tour: Vec<usize>,
+    pub gbest_score: f64,
+
     pub history: Vec<f64>,
 }
 
@@ -403,6 +426,151 @@ impl AcsTspSolver {
             "Done in {:.2?}s. Best: {:.2}",
             start.elapsed(),
             self.best_score
+        );
+    }
+}
+
+impl PsoTspSolver {
+    pub fn new(
+        data: TspData,
+        num_particles: usize,
+        iterations: usize,
+        w: f64,
+        c1: f64,
+        c2: f64,
+    ) -> Self {
+        let n_cities = data.n;
+        let mut rng = rand::rng();
+
+        // Диапазон для инициализации координат и скоростей
+        let pos_dist = Uniform::new(0.0, 1.0).unwrap();
+        let vel_dist_scale = Uniform::new(0.0, 1.0).unwrap(); // Для скоростей
+
+        // Инициализация частиц
+        let mut positions = vec![vec![0.0; n_cities]; num_particles];
+        let mut velocities = vec![vec![0.0; n_cities]; num_particles];
+        let mut pbest_pos = vec![vec![0.0; n_cities]; num_particles];
+        let mut pbest_scores = vec![f64::INFINITY; num_particles];
+
+        // Лучшее глобальное
+        let mut gbest_pos = vec![0.0; n_cities];
+        let mut gbest_score = f64::INFINITY;
+        let mut gbest_tour = Vec::new();
+
+        // Создаем начальный рой
+        for i in 0..num_particles {
+            for j in 0..n_cities {
+                positions[i][j] = pos_dist.sample(&mut rng);
+                velocities[i][j] = vel_dist_scale.sample(&mut rng);
+            }
+
+            // Находим начальный лучший путь для этой частицы
+            let current_tour = Self::get_tour(&positions[i]);
+            let current_score = data.calculate_tour_length(&current_tour);
+
+            pbest_pos[i] = positions[i].clone();
+            pbest_scores[i] = current_score;
+
+            if current_score < gbest_score {
+                gbest_score = current_score;
+                gbest_pos = positions[i].clone();
+                gbest_tour = current_tour;
+            }
+        }
+
+        PsoTspSolver {
+            data,
+            num_particles,
+            iterations,
+            w,
+            c1,
+            c2,
+            positions,
+            velocities,
+            pbest_pos,
+            pbest_scores,
+            gbest_pos,
+            gbest_tour,
+            gbest_score,
+            history: Vec::new(),
+        }
+    }
+
+    // Преобразование вектора приоритетов в перестановку
+    fn get_tour(position_vector: &[f64]) -> Vec<usize> {
+        let mut indexed_values: Vec<(usize, f64)> =
+            position_vector.iter().cloned().enumerate().collect();
+        // Сортируем по значению (приоритету)
+        indexed_values.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap());
+        // Возвращаем только индексы городов в отсортированном порядке
+        indexed_values.iter().map(|&(index, _)| index).collect()
+    }
+
+    pub fn run(&mut self) {
+        println!("Starting Classic PSO...");
+        let start = Instant::now();
+        let mut rng = rand::rng();
+        let n_cities = self.data.n;
+
+        // Генераторы случайных чисел для r1, r2
+        let r1_dist = Uniform::new(0.0, 1.0).unwrap();
+        let r2_dist = Uniform::new(0.0, 1.0).unwrap();
+
+        for it in 0..self.iterations {
+            let mut current_iter_best = f64::INFINITY;
+
+            // 1. Оценка каждой частицы
+            for i in 0..self.num_particles {
+                let current_tour = Self::get_tour(&self.positions[i]);
+                let current_score = self.data.calculate_tour_length(&current_tour);
+
+                // Обновление PBest
+                if current_score < self.pbest_scores[i] {
+                    self.pbest_scores[i] = current_score;
+                    self.pbest_pos[i] = self.positions[i].clone();
+                }
+
+                // Обновление GBest
+                if current_score < self.gbest_score {
+                    self.gbest_score = current_score;
+                    self.gbest_pos = self.positions[i].clone();
+                    self.gbest_tour = current_tour;
+                    // println!("New Best at iter {}: {:.2}", it, current_score);
+                }
+                current_iter_best = current_iter_best.min(current_score);
+            }
+            self.history.push(self.gbest_score);
+
+            // 2. Обновление скоростей и позиций
+            for i in 0..self.num_particles {
+                let r1 = r1_dist.sample(&mut rng);
+                let r2 = r2_dist.sample(&mut rng);
+
+                for j in 0..n_cities {
+                    // Скорость: v = w*v + c1*r1*(pbest - x) + c2*r2*(gbest - x)
+                    let velocity_component = self.w * self.velocities[i][j]
+                        + self.c1 * r1 * (self.pbest_pos[i][j] - self.positions[i][j])
+                        + self.c2 * r2 * (self.gbest_pos[j] - self.positions[i][j]);
+
+                    self.velocities[i][j] = velocity_component;
+
+                    // Позиция: x = x + v
+                    self.positions[i][j] = self.positions[i][j] + self.velocities[i][j];
+
+                    // Ограничение позиций в [0, 1] (если нужно)
+                    // self.positions[i][j] = self.positions[i][j].clamp(0.0, 1.0);
+                    // В Random Keys claming не всегда нужен, т.к. argsort работает с любыми числами
+                }
+            }
+            if it % 100 == 0 {
+                println!("Iter {}: Best = {:.2}", it, self.gbest_score);
+            }
+        }
+
+        println!(
+            "Finished in {:.2?}s. Best: {:.2}",
+            start.elapsed(),
+            self.gbest_score
         );
     }
 }
