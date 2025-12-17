@@ -1,53 +1,88 @@
 # TSP Swarm Solver
 
-## Overview
-This project is a Traveling Salesman Problem (TSP) solver using Ant Colony Optimization (ACO). It includes a Rust-based implementation for solving TSP instances and a Python-based visualization tool for analyzing the results.
+![Rust](https://img.shields.io/badge/Language-Rust-orange.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-## Prerequisites
+Солвер для **Задачи Коммивояжера (TSP)**, на языке Rust.
 
-### Rust
-- Install Rust using [rustup](https://rustup.rs/):
-  ```bash
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+В проекте реализованы и сравниваются два подхода роевого интеллекта:
+1.  **Ant Colony System (ACS)** — основной метод. Гибридный алгоритм, использующий муравьиную колонию, усиленную локальным поиском (**2-opt** и **Or-opt**) и списками кандидатов для ускорения.
+2.  **Particle Swarm Optimization (PSO)** — контрольный алгоритм на основе кодирования Random Keys.
+
+Алгоритм оптимизирован для работы с графами большой размерности (до **33 000+ городов**) за счет вычисления расстояний "на лету" без хранения матрицы смежности в памяти.
+
+---
+
+## Структура проекта
+
+Весь исходный код находится в папке `src/`.
+
+* **`src/main.rs`**
+  * Точка входа в программу.
+  * Здесь задаются параметры запуска (количество муравьев, итераций, коэффициенты жадности) для разных тестовых файлов.
+  * Здесь происходит выбор файла данных и запуск тестов для солвера.
+
+* **`src/tsp_data.rs`**
+  * Модуль для работы с данными.
+  * Отвечает за чтение файлов с координатами городов.
+  * Содержит оптимизированную функцию расчета евклидова расстояния (`dist`), которая не требует хранения гигантской матрицы в оперативной памяти.
+
+* **`src/tsp_solvers.rs`**
+  * Ядро логики алгоритмов.
+  * `AcsTspSolver` -- реализация системы муравьиных колоний, включая логику феромонов, 2-opt и Or-opt оптимизации.
+  * `PsoTspSolver` -- реализация алгоритма PSO. 
+  * Вспомогательные структуры для списков кандидатов.
+
+* **`data/`**
+  * Здесь лежат текстовые файлы тестов с координатами городов (формат: `N` строк, в каждой `X Y`).
+
+* **`ansers/`** 
+  * Тут результаты отработки на тестах в виде текстовых файлов, на каждый тест в файле неходится строка 
   ```
-- Ensure `cargo` (Rust's package manager) is available:
-  ```bash
-  cargo --version
+  <номер_теста> <баллы> <оптимальный_путь_как_список_вершин>\n
   ```
 
-### Python (Optional for Visualization)
-- Install Python 3.8 or higher.
-- Install the required Python libraries:
-  ```bash
-  pip install -r requirements.txt
-  ```
+* **`logs/`** 
+  * Тут хранится лог запуска программы.
 
-## Build && Run Instructions
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd tsp-swarm-solver
-   ```
-2. Run the project using Cargo:
-   ```bash
-   cargo run --release
-   ```
-3. Check the output in the `answer.txt` file. Each line contains the test index, score, and the tour.
+* **`visualization/`** 
+  * Тут можно посмотреть на визуализацию найденных путей (с помощью ACS и PSO), а также код для отрисовки.
 
-## Visualization
-1. Navigate to the `visualization` folder:
-   ```bash
-   cd visualization
-   ```
-2. Open the Jupyter Notebook or the presaved images.
-3. Run the notebook to visualize the TSP tours.
+*   **`Cargo.toml`**
+    * Файл конфигурации Rust-проекта и зависимостей (используется библиотека `rand`).
 
-## Project Structure
-- `src/`: Contains the Rust source code.
-- `data/`: Contains TSP instance files for testing.
-- `visualization/`: Contains the Python visualization tool.
-- `answer.txt`: Stores the results of the solver.
-- `logs.txt`: Shows presaved execution logs (to confirm the integrity of the work).
+## Визуализации и баллы
 
-## License
+Баллы и визуализированные решения можно посмотреть в папке `visualization/`.
+
+---
+
+## Как запустить
+
+Для запуска вам понадобится установленный [Rust и Cargo](https://rustup.rs/), а также Python >3.9. 
+
+### 1. Клонирование репозитория
+```bash
+git clone https://github.com/AntonLED/TSP-swarm-solver.git
+cd TSP-swarm-solver
+```
+
+### 2. Сборка и запуск
+Сборка и запуск проекта на rust:
+```bash
+cargo run --release
+```
+
+Сборка питона для запуска `visualizer.ipynb`:
+```bash
+pip install -r requirements.txt
+```
+После завершения работы программа выведет лучшую найденную длину пути и время выполнения.
+### 3. Требования к ресурсам
+RAM: Не мнее 5 Гб (для графа с 33к вершинами). 
+
+--- 
+
+### License
 This project is licensed under the MIT License.
+
